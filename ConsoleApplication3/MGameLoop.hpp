@@ -12,9 +12,7 @@ namespace MuSeoun_Engine
 	private:
 		bool _isGameRunning;
 		MConsoleRenderer cRenderer;
-		int i = 0;
-		double time = 0;
-
+		
 	public:
 		MGameLoop() 
 		{ _isGameRunning = false; }
@@ -76,21 +74,13 @@ namespace MuSeoun_Engine
 
 			chrono::duration<double> renderDuration = chrono::system_clock::now() - startRenderTimePoint;
 			
-			
-			
-		    i++;
-			
-			time = time + renderDuration.count();
+			double fpss = 1.0f / renderDuration.count();
+			int fpst = fpss + 0;
 
-			if (time >= 1.0f)  
-			{
-				string fps = "FPS(seconds) : " + to_string(i);
-				cRenderer.DrawString(fps);
-				time = 0;
-				i = 0;
-			}
+			string fps = "FPS(seconds) : " + to_string(fpst);
+			cRenderer.DrawString(fps);
 			
-			
+		    
 
 			//5string fps = "FPS(milliseconds) : " + to_string(renderDuration.count());
 			
