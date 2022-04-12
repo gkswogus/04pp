@@ -1,3 +1,2 @@
 ﻿  main.cpp
-C:\Users\Man\source\repos\04pp2\ConsoleApplication3\MGameLoop.hpp(78,13): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  ConsoleApplication3.vcxproj -> C:\Users\Man\Source\Repos\04pp2\x64\Debug\PP_04.exe
+  ConsoleApplication3.vcxproj -> C:\Users\Man\Source\Repos\04pp1\x64\Debug\PP_04.exe

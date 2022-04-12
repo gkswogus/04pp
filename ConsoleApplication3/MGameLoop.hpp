@@ -12,6 +12,8 @@ namespace MuSeoun_Engine
 	private:
 		bool _isGameRunning;
 		MConsoleRenderer cRenderer;
+		chrono::system_clock::time_point startRenderTimePoint;
+		chrono::duration<double> renderDuration;
 		
 	public:
 		MGameLoop() 
@@ -25,6 +27,7 @@ namespace MuSeoun_Engine
 			_isGameRunning = true;
 			Initialize();
 
+			startRenderTimePoint = chrono::system_clock::now();
 			while (_isGameRunning)
 			{
 				Input();
@@ -49,14 +52,14 @@ namespace MuSeoun_Engine
 
 		void Input()
 		{
-			/*	if (GetAsyncKeyState(VK_SPACE) & 0x8000 || GetAsyncKeyState(VK_SPACE) & 0x8001)
+				if (GetAsyncKeyState(VK_SPACE) & 0x8000 || GetAsyncKeyState(VK_SPACE) & 0x8001)
 				{
-
+					
 				}
 				else
 				{
-
-				}*/
+					
+				}
 
 		}
 		void Update()
@@ -66,20 +69,18 @@ namespace MuSeoun_Engine
 		 
 		void Render()
 		{
-			chrono::system_clock::time_point startRenderTimePoint = chrono::system_clock::now();
+			
 
 			
 			cRenderer.MoveCursor(10, 20);
-			cRenderer.Clear();
+		
 
-			chrono::duration<double> renderDuration = chrono::system_clock::now() - startRenderTimePoint;
-			
-			double fpss = 1.0f / renderDuration.count();
-			int fpst = fpss + 0;
-
-			string fps = "FPS(seconds) : " + to_string(fpst);
+			renderDuration = chrono::system_clock::now() - startRenderTimePoint;
+			startRenderTimePoint = chrono::system_clock::now();
+			string fps = "FPS : " + to_string(1.0 / renderDuration.count());
 			cRenderer.DrawString(fps);
-			
+
+			this_thread::sleep_for(chrono::milliseconds(20));
 		    
 
 			//5string fps = "FPS(milliseconds) : " + to_string(renderDuration.count());
