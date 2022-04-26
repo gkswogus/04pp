@@ -14,6 +14,8 @@ namespace MuSeoun_Engine
 	{
 	private:
 		bool _isGameRunning;
+		
+
 		MConsoleRenderer cRenderer;
 		chrono::system_clock::time_point startRenderTimePoint;
 		chrono::duration<double> renderDuration;
@@ -55,49 +57,59 @@ namespace MuSeoun_Engine
 		}
 
 		void Input()
+		
 		{
 			if (GetAsyncKeyState(VK_SPACE) & 0x8000 || GetAsyncKeyState(VK_SPACE) & 0x8001)
 			{
 				p.isKeyPressed();
 			}
-			else
+			    else
 			{
 				p.isKeyUnpressed();
 			}
-
+			
+			if (m.x == 18 && p.y == 7) 
+			{
+				NULL;
+			}
 		}
+	
 		void Update()
 		{
 
 		}
 		void Render()
 		{
-
+			
+		
+			
 			cRenderer.Clear();
 
+             	if (m.x == 18 && p.y == 7)
+				{
+					cRenderer.MoveCursor(g.x, g.y);
+					cRenderer.DrawString("★GAME OVER★     ~다시시작:space");
+				    
+				}
+				else 
+				{
+					m.x -= 2;
 
-			cRenderer.MoveCursor(p.x, p.y);
-			cRenderer.DrawString("P");
-			cRenderer.MoveCursor(m.x, m.y);
-			cRenderer.DrawString("★");
+					if (m.x == 0)
+					{
+						m.x = 80;
+					}
+
+                    cRenderer.MoveCursor(p.x, p.y);
+					cRenderer.DrawString("P");
+					cRenderer.MoveCursor(m.x, m.y);
+					cRenderer.DrawString("★");
+				}
+		
 			
-
-			m.x -= 2;
 			
-			if (m.x == 0)
-			{
-				m.x = 80;
-				
-			}
-			if (m.x==18  && p.y==7 )
-			{
-				cRenderer.MoveCursor(g.x, g.y);
-				cRenderer.DrawString("GAME OVER★");
-				_isGameRunning = false;
-
-			}
-
-
+			
+			
 			cRenderer.MoveCursor(10, 20);
 
 
