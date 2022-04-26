@@ -85,7 +85,7 @@ namespace MuSeoun_Engine
 			
 			cRenderer.Clear();
 
-             	if (m.x == 18 && p.y == 7)
+             	if (m.x == 20 && p.y == 7)
 				{
 					cRenderer.MoveCursor(g.x, g.y);
 					cRenderer.DrawString("★GAME OVER★     ~다시시작:space");
